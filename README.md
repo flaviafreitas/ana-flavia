@@ -1,6 +1,33 @@
 # Ana Flavia
 
-Configuração inicial do projeto com acesso ao Sanity por meio do Model Context Protocol (MCP).
+Site em Next.js com TypeScript, SCSS Modules, Sanity Studio integrado e acesso ao
+Sanity por meio do Model Context Protocol (MCP).
+
+## Desenvolvimento
+
+Instale as dependências e inicie o site:
+
+```bash
+npm install
+npm run dev
+```
+
+Abra [http://localhost:3000](http://localhost:3000). O painel administrativo fica
+em [http://localhost:3000/studio](http://localhost:3000/studio).
+
+Antes de abrir o Studio, copie `.env.example` para `.env.local` e informe o ID do
+seu projeto Sanity:
+
+```bash
+cp .env.example .env.local
+```
+
+Estrutura inicial:
+
+- `/`: página inicial editável;
+- `/blog`: lista de publicações;
+- `/blog/[slug]`: publicação individual;
+- `/studio`: painel administrativo do Sanity.
 
 ## Sanity MCP
 
