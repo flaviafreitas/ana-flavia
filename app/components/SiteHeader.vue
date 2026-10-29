@@ -1,3 +1,15 @@
+<template>
+  <header :class="$style.header">
+    <div :class="['container', $style.inner]">
+      <NuxtLink :class="$style.logo" to="/">Ana Flavia</NuxtLink>
+      <nav aria-label="Navegação principal">
+        <NuxtLink to="/">Início</NuxtLink>
+        <NuxtLink to="/blog">Blog</NuxtLink>
+      </nav>
+    </div>
+  </header>
+</template>
+<style module lang="scss">
 .header {
   position: sticky;
   z-index: 10;
@@ -24,3 +36,4 @@
 @media (max-width: 640px) {
   .inner { align-items: flex-start; flex-direction: column; gap: 0.75rem; padding-block: 1rem; }
 }
+</style>

@@ -1,33 +1,47 @@
 # Ana Flavia
 
-Site em Next.js com TypeScript, SCSS Modules, Sanity Studio integrado e acesso ao
-Sanity por meio do Model Context Protocol (MCP).
+Site em Vue com Nuxt, TypeScript, SCSS e Sanity Studio integrado.
 
 ## Desenvolvimento
 
-Instale as dependências e inicie o site:
+Requer Node.js 22.12 ou superior.
 
 ```bash
-npm install
+npm ci
+cp .env.example .env.local
 npm run dev
 ```
 
-Abra [http://localhost:3000](http://localhost:3000). O painel administrativo fica
-em [http://localhost:3000/studio](http://localhost:3000/studio).
-
-Antes de abrir o Studio, copie `.env.example` para `.env.local` e informe o ID do
-seu projeto Sanity:
-
-```bash
-cp .env.example .env.local
-```
-
-Estrutura inicial:
+Preencha `NUXT_PUBLIC_SANITY_PROJECT_ID` no `.env.local`. O dataset padrão é
+`production`. Nunca adicione tokens ao repositório.
 
 - `/`: página inicial editável;
 - `/blog`: lista de publicações;
 - `/blog/[slug]`: publicação individual;
-- `/studio`: painel administrativo do Sanity.
+- `/studio`: painel administrativo, incluindo suas sub-rotas.
+
+O site usa Vue. O Studio é uma aplicação React do próprio Sanity, carregada
+apenas na rota `/studio`, sem o cabeçalho ou rodapé do site.
+Cadastre `http://localhost:3000` nas origens CORS do projeto Sanity com
+credenciais habilitadas para acessar o painel local.
+
+O Nuxt lê `.env.local` nos comandos de desenvolvimento, build e preview.
+Em produção, configure `NUXT_PUBLIC_SANITY_PROJECT_ID`,
+`NUXT_PUBLIC_SANITY_DATASET` e `NUXT_PUBLIC_SANITY_API_VERSION` no ambiente.
+
+## Validação e produção
+
+```bash
+npm run typecheck
+npm run build
+npm start
+```
+
+O build gera `.output/`, com o servidor em `.output/server/index.mjs`.
+`npm run generate` é uma alternativa para hospedagem estática; configure a
+hospedagem para servir as sub-rotas do Studio e refaça a geração ao publicar
+conteúdo ou novos artigos. O build padrão renderiza o site no servidor e
+consulta o conteúdo publicado no Sanity.
 
 ## Sanity MCP
 

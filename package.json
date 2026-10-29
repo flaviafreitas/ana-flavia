@@ -3,25 +3,33 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "dev": "nuxt dev --dotenv .env.local",
+    "build": "nuxt build --dotenv .env.local",
+    "generate": "nuxt generate --dotenv .env.local",
+    "preview": "nuxt preview --dotenv .env.local",
+    "start": "node .output/server/index.mjs",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck --dotenv .env.local"
   },
   "dependencies": {
-    "@portabletext/react": "^6.0.2",
-    "next": "^16.4.0",
-    "next-sanity": "^13.3.4",
+    "@portabletext/vue": "^2.0.0",
+    "@sanity/client": "^7.27.0",
+    "nuxt": "^4.6.3",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "sanity": "^6.19.0",
-    "styled-components": "^6.1.19"
+    "styled-components": "^6.1.19",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0"
   },
   "devDependencies": {
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "sass": "^1.105.1",
-    "typescript": "^5.9.3"
-  }
+    "typescript": "^5.9.3",
+    "vue-tsc": "^3.3.13",
+    "@portabletext/types": "^4.0.2"
+  },
+  "type": "module"
 }
