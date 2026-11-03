@@ -1,0 +1,79 @@
+/* Ana Flávia · foundations extracted from Figma jJ5zVpe4R08Y8mUQV37Oca.
+   Interaction tones extend the layout palette; existing site aliases remain independent. */
+:root {
+  --color-primary-500: #4a9cd9;
+  --color-primary-600: #246da6;
+  --color-primary-700: #1e5684;
+  --color-navy-900: #1a2744;
+  --color-blue-700: #3b5999;
+  --color-blue-100: #dbeafe;
+  --color-blue-50: #e8f2fa;
+  --color-cream-50: #fdfbf7;
+  --color-cream-100: #faf5f0;
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+  --color-shadow-card: color-mix(in srgb, var(--color-navy-900) 6%, var(--color-transparent));
+  --color-shadow-button: color-mix(in srgb, var(--color-primary-500) 25%, var(--color-transparent));
+  --color-shadow-hover: color-mix(in srgb, var(--color-navy-900) 12%, var(--color-transparent));
+  --color-border-subtle: color-mix(in srgb, var(--color-navy-900) 8%, var(--color-transparent));
+  --color-border-on-dark: color-mix(in srgb, var(--color-white) 15%, var(--color-transparent));
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-white);
+  --color-surface-soft: var(--color-blue-50);
+  --color-text: var(--color-navy-900);
+  --color-text-secondary: var(--color-blue-700);
+  --color-border: var(--color-blue-100);
+  --color-action: var(--color-primary-600);
+  --color-action-hover: var(--color-primary-700);
+  --color-on-action: var(--color-white);
+  --color-focus: var(--color-navy-900);
+  --color-disabled-bg: var(--color-blue-100);
+  --color-disabled-text: var(--color-blue-700);
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Manrope', Arial, sans-serif;
+  --font-brand: var(--font-display);
+  --text-display: 3.5rem;
+  --text-h1: 3rem;
+  --text-h2: 2.5rem;
+  --text-h3: 1.5rem;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.6875rem;
+  --leading-tight: 1.1;
+  --leading-heading: 1.2;
+  --leading-body: 1.65;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --radius-sm: 0.5rem;
+  --radius-card: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-pill: 100px;
+  --shadow-card: 0 2px 8px var(--color-shadow-card);
+  --shadow-button: 0 4px 6px var(--color-shadow-button);
+  --shadow-swatch: 0 4px 14px var(--color-shadow-hover);
+  --duration-fast: 160ms;
+}
+
+// Compatibility aliases for pages awaiting the visual redesign.
+:root {
+  --color-legacy-gradient-end: #f4e8df;
+  --background: #fffdf9;
+  --foreground: #22201f;
+  --surface: #f8f2ec;
+  --accent: #9b503d;
+  --muted: #6e6762;
+  --border: #ded6cf;
+}

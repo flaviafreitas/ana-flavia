@@ -1,0 +1,20 @@
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  h2 {
+    margin: 0;
+    font: 900 var(--text-h2)/var(--leading-heading) var(--font-display);
+    letter-spacing: -0.025em;
+  }
+  p {
+    margin: 0;
+    max-width: 64ch;
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    color: var(--color-text-secondary);
+  }
+}

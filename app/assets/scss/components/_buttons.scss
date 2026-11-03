@@ -1,0 +1,106 @@
+// Compatibility class for existing links on the home page.
+.button {
+  display: inline-flex;
+  padding: 0.9rem 1.2rem;
+  border-radius: 999px;
+  background: var(--foreground);
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 50px;
+  padding: 14px var(--space-7);
+  border: 2px solid var(--color-transparent);
+  border-radius: var(--radius-pill);
+  font: 700 var(--text-body)/1.25 var(--font-body);
+  cursor: pointer;
+  text-align: center;
+  transition:
+    background var(--duration-fast),
+    border-color var(--duration-fast),
+    box-shadow var(--duration-fast);
+  &:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 4px;
+  }
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--color-disabled-bg);
+    border-color: var(--color-transparent);
+    color: var(--color-disabled-text);
+    box-shadow: none;
+  }
+}
+.btn--primary {
+  background: var(--color-action);
+  color: var(--color-on-action);
+  box-shadow: var(--shadow-button);
+  &:hover:not(:disabled) {
+    background: var(--color-action-hover);
+  }
+}
+.btn--brand {
+  background: var(--color-primary-500);
+  color: var(--color-navy-900);
+  box-shadow: var(--shadow-button);
+  &:hover:not(:disabled) {
+    background: var(--color-blue-100);
+  }
+}
+.btn--secondary {
+  background: var(--color-transparent);
+  border-color: var(--color-action);
+  color: var(--color-action);
+  &:hover:not(:disabled) {
+    background: var(--color-surface-soft);
+    border-color: var(--color-action-hover);
+    color: var(--color-action-hover);
+  }
+}
+.btn--ghost {
+  background: var(--color-transparent);
+  color: var(--color-action);
+  &:hover:not(:disabled) {
+    background: var(--color-surface-soft);
+  }
+}
+.btn--sm {
+  min-height: 44px;
+  padding: 10px var(--space-5);
+  font-size: var(--text-small);
+}
+.btn--lg {
+  min-height: 58px;
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-body-lg);
+}
+.btn__spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: var(--color-transparent);
+  border-radius: 50%;
+  animation: btn-spin 800ms linear infinite;
+}
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+  .btn__spinner {
+    animation: none;
+    border-style: dotted;
+  }
+}

@@ -1,0 +1,41 @@
+.accordion {
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  font-family: var(--font-body);
+  color: var(--color-text);
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    min-height: 24px;
+    cursor: pointer;
+    list-style: none;
+    font-size: var(--text-body);
+    font-weight: 700;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 6px;
+    border-radius: var(--radius-sm);
+  }
+  &[open] .accordion__indicator {
+    transform: rotate(45deg);
+  }
+}
+.accordion__indicator {
+  color: var(--color-action);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.accordion__answer {
+  margin-top: var(--space-3);
+  color: var(--color-text-secondary);
+  font-size: var(--text-small);
+  line-height: 1.6;
+}

@@ -1,0 +1,19 @@
+// Percentages preserve the browser's preferred default font size.
+html {
+  font-size: 100%;
+}
+@media (max-width: 1150px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+@media (max-width: 800px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
