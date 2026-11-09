@@ -59,41 +59,12 @@
 }
 
 .site-header__appointment {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   white-space: nowrap;
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background: linear-gradient(
-      110deg,
-      transparent 25%,
-      color-mix(in srgb, var(--color-white) 22%, transparent) 50%,
-      transparent 75%
-    );
-    transform: translateX(-120%);
-  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .site-header__desktop-nav a::after {
     transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .site-header__appointment {
-    transition:
-      background var(--duration-fast),
-      box-shadow 240ms ease,
-      transform 240ms ease;
-
-    &::after {
-      transition: transform 550ms ease;
-    }
   }
 
   .site-header__mobile-nav a {
@@ -108,18 +79,6 @@
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .site-header__appointment:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px color-mix(in srgb, var(--color-action) 28%, transparent);
-
-    &::after {
-      transform: translateX(120%);
-    }
-  }
-
-  .site-header__appointment:active {
-    transform: translateY(0);
-  }
   .site-header__mobile-nav a:hover span {
     transform: translate(3px, -3px);
   }
