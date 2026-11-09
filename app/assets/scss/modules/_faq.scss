@@ -1,0 +1,216 @@
+.home-faq {
+  padding-block: calc(var(--space-24) + var(--space-6));
+  background: var(--color-blue-25);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  scroll-margin-top: 110px;
+}
+
+.home-faq__inner {
+  display: grid;
+  grid-template-columns: 420px minmax(0, 1fr);
+  align-items: start;
+  gap: calc(var(--space-10) * 2);
+}
+
+.home-faq__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-7);
+  min-width: 0;
+}
+
+.home-faq__heading {
+  gap: var(--space-7);
+
+  .badge {
+    border: 0;
+    color: var(--color-white);
+    line-height: normal;
+    letter-spacing: 0;
+  }
+
+  h2 {
+    letter-spacing: 0;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+}
+
+.home-faq__contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.home-faq__whatsapp {
+  background: var(--color-primary-500);
+  color: var(--color-white);
+  font-size: 0.9375rem;
+  box-shadow: none;
+}
+
+.home-faq__instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+  line-height: var(--leading-body);
+  overflow-wrap: anywhere;
+
+  img {
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+}
+
+.home-faq__availability {
+  display: grid;
+  gap: var(--space-1);
+  max-width: 100%;
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+
+  strong {
+    color: var(--color-primary-500);
+    font: 700 var(--text-body-lg)/var(--leading-heading) var(--font-display);
+  }
+}
+
+.home-faq__list {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+
+  .accordion {
+    padding: var(--space-7);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px color-mix(in srgb, var(--color-navy-900) 3%, transparent);
+
+    summary {
+      gap: var(--space-4);
+      font: 700 var(--text-body-lg)/var(--leading-heading) var(--font-display);
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  .accordion__indicator {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-blue-100);
+    transform: rotate(180deg);
+
+    img {
+      display: block;
+    }
+  }
+
+  .accordion[open] .accordion__indicator {
+    transform: none;
+  }
+
+  .accordion__answer {
+    margin-top: 0;
+    padding-top: 14px;
+    line-height: 1.7;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-faq__list .accordion {
+    interpolate-size: allow-keywords;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  .home-faq__list .accordion::details-content {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      height 400ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 250ms ease,
+      content-visibility 400ms allow-discrete;
+  }
+
+  .home-faq__list .accordion[open]::details-content {
+    height: auto;
+    opacity: 1;
+  }
+
+  .home-faq__list .accordion__indicator {
+    transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@media (hover: hover) {
+  .home-faq__list .accordion:hover {
+    border-color: var(--color-primary-500);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+@media (max-width: 1150px) {
+  .home-faq {
+    padding-block: var(--space-24);
+  }
+
+  .home-faq__inner {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+    gap: var(--space-10);
+  }
+}
+
+@media (max-width: 800px) {
+  .home-faq {
+    padding-block: calc(var(--space-12) + var(--space-2));
+  }
+
+  .home-faq__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+
+  .home-faq__intro,
+  .home-faq__heading {
+    gap: var(--space-5);
+  }
+
+  .home-faq__heading h2 {
+    font-size: clamp(var(--text-h3), 6.67vw, var(--text-h2));
+  }
+
+  .home-faq__list .accordion {
+    padding: var(--space-5);
+    border-radius: var(--radius-card);
+  }
+}
