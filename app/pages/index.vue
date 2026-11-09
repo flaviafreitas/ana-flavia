@@ -9,25 +9,15 @@ if (error.value)
 </script>
 
 <template>
-  <section class="home-hero">
-    <div class="container">
-      <span class="home-eyebrow">{{ home?.eyebrow ?? 'Bem-vindo' }}</span>
-      <h1>{{ home?.title ?? 'Um espaço para apresentar seu trabalho e suas ideias.' }}</h1>
-      <p>
-        {{
-          home?.introduction ??
-          'Esta página inicial está pronta para evoluir com o conteúdo gerenciado pelo Sanity.'
-        }}
-      </p>
-      <NuxtLink
-        class="button"
-        to="/blog"
-      >
-        Ver publicações
-      </NuxtLink>
-    </div>
-  </section>
-  <section id="sobre" class="section">
+  <HomeHero
+    :eyebrow="home?.eyebrow"
+    :title="home?.title"
+    :introduction="home?.introduction"
+  />
+  <section
+    id="sobre"
+    class="section"
+  >
     <div class="container">
       <h2>Sobre</h2>
       <div :class="['prose', 'home-intro']">
