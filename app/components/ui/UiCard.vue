@@ -1,7 +1,10 @@
 <script setup lang="ts">
-withDefaults(defineProps<{ title: string; description?: string; tone?: 'white' | 'soft' }>(), {
-  tone: 'white',
-})
+withDefaults(
+  defineProps<{ title: string; description?: string; tone?: 'white' | 'soft' | 'dark' }>(),
+  {
+    tone: 'white',
+  },
+)
 </script>
 
 <template>
