@@ -47,8 +47,9 @@ function closeMenu() {
         </NuxtLink>
       </nav>
       <div class="site-header__actions">
-        <a
-          class="btn btn--primary btn--sm site-header__appointment"
+        <UiButton
+          class="site-header__appointment"
+          size="sm"
           :href="site.whatsappUrl"
           target="_blank"
           rel="noopener noreferrer"
@@ -56,7 +57,7 @@ function closeMenu() {
           <span class="site-header__appointment-desktop">Agendar consulta</span>
           <span class="site-header__appointment-mobile">Agendar</span>
           <span class="site-visually-hidden">pelo WhatsApp (abre em nova aba)</span>
-        </a>
+        </UiButton>
         <button
           ref="menuButton"
           class="site-header__menu-button"
