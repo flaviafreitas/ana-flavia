@@ -11,5 +11,11 @@ export interface Post {
   slug: string
   excerpt?: string
   publishedAt?: string
+  category?: string
+  readingTime?: number
+  coverImage?: {
+    url: string
+    alt?: string
+  }
   body?: PortableTextBlock[]
 }
