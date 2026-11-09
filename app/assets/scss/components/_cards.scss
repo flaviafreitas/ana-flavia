@@ -27,6 +27,18 @@
 .card--soft {
   background: var(--color-surface-soft);
 }
+.card--dark {
+  background: var(--color-navy-900);
+  border-color: var(--color-navy-900);
+  color: var(--color-white);
+
+  p {
+    color: var(--color-blue-100);
+  }
+  .card__icon {
+    background: var(--color-primary-500);
+  }
+}
 .card__icon {
   display: grid;
   place-items: center;
