@@ -14,6 +14,7 @@ if (error.value)
     :title="home?.title"
     :introduction="home?.introduction"
   />
+  <UiTagline text="O que não é dito o corpo expressa, dê voz a palavra" />
   <section
     id="sobre"
     class="section"
