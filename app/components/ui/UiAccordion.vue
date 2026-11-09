@@ -13,7 +13,7 @@ withDefaults(defineProps<{ question: string; open?: boolean }>(), { open: false 
         class="accordion__indicator"
         aria-hidden="true"
       >
-        +
+        <slot name="indicator">+</slot>
       </span>
     </summary>
     <div class="accordion__answer"><slot /></div>
