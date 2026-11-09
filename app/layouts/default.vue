@@ -1,5 +1,5 @@
 <template>
   <SiteHeader />
-  <main><slot /></main>
+  <main id="conteudo-principal" tabindex="-1"><slot /></main>
   <SiteFooter />
 </template>
