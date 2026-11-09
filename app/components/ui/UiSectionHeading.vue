@@ -1,16 +1,25 @@
 <script setup lang="ts">
-defineProps<{ eyebrow?: string; title: string; description?: string }>()
+withDefaults(
+  defineProps<{
+    eyebrow?: string
+    eyebrowTone?: 'brand' | 'soft' | 'outline'
+    title: string
+    titleId?: string
+    description?: string
+  }>(),
+  { eyebrowTone: 'soft' },
+)
 </script>
 
 <template>
   <header class="section-heading">
     <UiBadge
       v-if="eyebrow"
-      tone="soft"
+      :tone="eyebrowTone"
     >
       {{ eyebrow }}
     </UiBadge>
-    <h2>{{ title }}</h2>
+    <h2 :id="titleId">{{ title }}</h2>
     <p v-if="description">{{ description }}</p>
   </header>
 </template>
