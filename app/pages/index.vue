@@ -22,4 +22,5 @@ const { data: posts, error: postsError } = await useSanityFetch<Post[]>('home-po
   <HomeTestimonials />
   <HomeBlog :posts="posts ?? []" :failed="Boolean(postsError)" />
   <HomeFaq />
+  <HomeCta />
 </template>
