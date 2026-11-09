@@ -27,7 +27,7 @@ if (error.value)
       </NuxtLink>
     </div>
   </section>
-  <section class="section">
+  <section id="sobre" class="section">
     <div class="container">
       <h2>Sobre</h2>
       <div :class="['prose', 'home-intro']">
