@@ -17,4 +17,5 @@ if (error.value)
   <HomeAbout :body="home?.body" />
   <HomeServices />
   <HomeHowWorks />
+  <HomeTestimonials />
 </template>
