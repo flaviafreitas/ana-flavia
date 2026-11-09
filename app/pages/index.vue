@@ -15,4 +15,5 @@ if (error.value)
   />
   <UiTagline text="O que não é dito o corpo expressa, dê voz a palavra" />
   <HomeAbout :body="home?.body" />
+  <HomeServices />
 </template>
