@@ -14,13 +14,6 @@
   gap: var(--space-4);
   text-align: center;
 
-  .badge {
-    border: 0;
-    color: var(--color-white);
-    line-height: normal;
-    letter-spacing: 0;
-  }
-
   h2 {
     letter-spacing: 0;
   }
@@ -129,11 +122,6 @@
 
 .home-blog__action {
   justify-self: center;
-  padding: var(--space-4) calc(var(--space-8) + var(--space-1));
-  border-width: 1.5px;
-  border-color: var(--color-navy-900);
-  color: var(--color-navy-900);
-  font-size: 0.9375rem;
 }
 
 .home-blog__empty {
