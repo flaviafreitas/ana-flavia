@@ -114,30 +114,30 @@
 @media (prefers-reduced-motion: no-preference) {
   .blog-card {
     transition:
-      transform 250ms ease,
-      border-color 250ms ease,
-      box-shadow 250ms ease;
+      transform var(--duration-medium) var(--ease-soft),
+      border-color var(--duration-medium) ease,
+      box-shadow var(--duration-medium) ease;
   }
 
   .blog-card__cover img {
-    transition: transform 400ms ease;
+    transition: transform var(--duration-slow) var(--ease-soft);
   }
 }
 
 @media (hover: hover) {
   .blog-card:hover {
     border-color: var(--color-primary-500);
-    box-shadow: 0 12px 28px var(--color-shadow-hover);
+    box-shadow: 0 8px 22px var(--color-shadow-card);
   }
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .blog-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-2px);
   }
 
   .blog-card:hover .blog-card__cover img {
-    transform: scale(1.04);
+    transform: scale(1.025);
   }
 }
 
