@@ -7,7 +7,7 @@ withDefaults(defineProps<{ post: Post; featured?: boolean }>(), { featured: fals
 
 <template>
   <article :class="['journal-card', { 'journal-card--featured': featured }]">
-    <NuxtLink :to="`/blog/${post.slug}`" class="journal-card__image" tabindex="-1" aria-hidden="true">
+    <NuxtLink :to="`/blog/${post.slug}`" class="journal-card__image" :aria-label="`Ler artigo: ${post.title}`">
       <img :src="postCover(post)" alt="" width="1376" height="768" :loading="featured ? 'eager' : 'lazy'" />
     </NuxtLink>
     <div class="journal-card__content">
