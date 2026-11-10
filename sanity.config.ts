@@ -2,13 +2,13 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { schemaTypes } from './sanity/schemaTypes'
 
-export function createStudioConfig(projectId: string, dataset: string) {
+export function createStudioConfig(projectId: string, dataset: string, basePath = '/studio') {
   return defineConfig({
     name: 'default',
     title: 'Ana Flavia',
     projectId,
     dataset,
-    basePath: '/studio',
+    basePath,
     plugins: [
       structureTool({
         structure: (S) =>

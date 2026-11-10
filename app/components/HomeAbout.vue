@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const assetUrl = useAssetUrl()
 import { defaultHome, type HomeSections } from '~/config/home'
 import { PortableText } from '@portabletext/vue'
 import type { PortableTextBlock } from '@portabletext/types'
@@ -78,7 +79,7 @@ onBeforeUnmount(() => {
       />
       <figure class="home-about__portrait">
         <img
-          src="/images/about-portrait.png"
+          :src="assetUrl('/images/about-portrait.png')"
           :alt="`${site.name} no consultório, apoiada à mesa com livros`"
           width="460"
           height="560"

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const assetUrl = useAssetUrl()
 import { PortableText } from '@portabletext/vue'
 import { POST_QUERY, RELATED_POSTS_QUERY } from '~~/sanity/lib/queries'
 import type { Post } from '~/types/content'
@@ -89,19 +90,19 @@ async function copyLink() {
             <h1>{{ post.title }}</h1>
             <p v-if="post.excerpt" class="article-header__excerpt">{{ post.excerpt }}</p>
             <div class="article-byline">
-              <img src="/images/about-portrait.png" alt="" width="44" height="44" />
+              <img :src="assetUrl('/images/about-portrait.png')" alt="" width="44" height="44" />
               <div><span>Por {{ site.name }}</span><small>{{ site.profession }} · {{ site.registration }}</small></div>
             </div>
           </div>
           <figure class="article-cover">
-            <img :src="postCover(post)" :alt="post.coverImage?.alt || ''" width="1376" height="768" fetchpriority="high" />
+            <img :src="assetUrl(postCover(post))" :alt="post.coverImage?.alt || ''" width="1376" height="768" fetchpriority="high" />
           </figure>
         </div>
       </header>
       <div class="site-shell article-layout">
         <aside class="article-author" aria-label="Sobre a autora">
           <span class="article-author__label">Um espaço de escuta</span>
-          <img src="/images/about-portrait.png" :alt="site.name" width="88" height="88" loading="lazy" />
+          <img :src="assetUrl('/images/about-portrait.png')" :alt="site.name" width="88" height="88" loading="lazy" />
           <h2>{{ site.name }}</h2>
           <p>{{ site.profession }}<br />{{ site.registration }}</p>
           <NuxtLink to="/#sobre" class="journal-text-link">Conheça meu trabalho <span aria-hidden="true">↗</span></NuxtLink>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const assetUrl = useAssetUrl()
 import type { Post } from '~/types/content'
 import { postCover } from '~/utils/blog'
 
@@ -8,7 +9,7 @@ withDefaults(defineProps<{ post: Post; featured?: boolean }>(), { featured: fals
 <template>
   <article :class="['journal-card', { 'journal-card--featured': featured }]">
     <NuxtLink :to="`/blog/${post.slug}`" class="journal-card__image" :aria-label="`Ler artigo: ${post.title}`">
-      <img :src="postCover(post)" alt="" width="1376" height="768" :loading="featured ? 'eager' : 'lazy'" />
+      <img :src="assetUrl(postCover(post))" alt="" width="1376" height="768" :loading="featured ? 'eager' : 'lazy'" />
     </NuxtLink>
     <div class="journal-card__content">
       <span v-if="featured" class="journal-card__featured-label">Leitura em destaque</span>

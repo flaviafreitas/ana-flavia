@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const assetUrl = useAssetUrl()
 import { defaultHome, type HomeSections } from '~/config/home'
 import type { Post } from '~/types/content'
 
@@ -33,7 +34,7 @@ const fallbackImages = [
         >
           <NuxtLink :to="`/blog/${post.slug}`" class="blog-card__cover" :aria-label="`Ler artigo: ${post.title}`" >
             <img
-              :src="post.coverImage?.url || fallbackImages[index]"
+              :src="assetUrl(post.coverImage?.url || fallbackImages[index])"
               :alt="post.coverImage?.alt || ''"
               width="1376"
               height="768"

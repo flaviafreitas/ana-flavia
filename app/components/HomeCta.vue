@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const assetUrl = useAssetUrl()
 import { defaultHome, type HomeSections } from '~/config/home'
 const { site } = useSiteContent()
 withDefaults(defineProps<{ content?: HomeSections['cta'] }>(), { content: () => defaultHome.cta })
@@ -9,8 +10,8 @@ withDefaults(defineProps<{ content?: HomeSections['cta'] }>(), { content: () => 
     <div class="home-cta__decoration" aria-hidden="true" >
       <span class="home-cta__spark home-cta__spark--plus">+</span>
       <span class="home-cta__spark home-cta__spark--cross">×</span>
-      <img class="home-cta__circle home-cta__circle--top" src="/images/cta/circle-top.svg" width="200" height="200" alt="" />
-      <img class="home-cta__circle home-cta__circle--left" src="/images/cta/circle-left.svg" width="160" height="160" alt="" />
+      <img class="home-cta__circle home-cta__circle--top" :src="assetUrl('/images/cta/circle-top.svg')" width="200" height="200" alt="" />
+      <img class="home-cta__circle home-cta__circle--left" :src="assetUrl('/images/cta/circle-left.svg')" width="160" height="160" alt="" />
     </div>
     <div class="site-shell home-cta__inner">
       <UiSectionHeading
@@ -44,7 +45,7 @@ withDefaults(defineProps<{ content?: HomeSections['cta'] }>(), { content: () => 
       </div>
       <ul class="home-cta__reassurance" role="list" >
         <li v-for="text in content.reassurance" :key="text" >
-          <img src="/images/cta/dot.svg" width="6" height="6" alt="" aria-hidden="true" />
+          <img :src="assetUrl('/images/cta/dot.svg')" width="6" height="6" alt="" aria-hidden="true" />
           {{ text }}
         </li>
       </ul>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 definePageMeta({ layout: false })
 useHead({ title: 'Painel | Ana Flavia', meta: [{ name: 'robots', content: 'noindex, nofollow' }] })
-const config = useRuntimeConfig().public
+const runtimeConfig = useRuntimeConfig()
+const config = runtimeConfig.public
 const container = useTemplateRef<HTMLDivElement>('studio')
 const message = ref('Carregando painel…')
 let unmount: (() => void) | undefined
@@ -26,7 +27,7 @@ onMounted(async () => {
     unmount = () => root.unmount()
     root.render(
       createElement(Studio, {
-        config: createStudioConfig(config.sanityProjectId, config.sanityDataset),
+        config: createStudioConfig(config.sanityProjectId, config.sanityDataset, `${runtimeConfig.app.baseURL}studio`),
       }),
     )
     message.value = ''

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const assetUrl = useAssetUrl()
 import { defaultHome, type HomeSections } from '~/config/home'
 const { site } = useSiteContent()
 
@@ -42,7 +43,7 @@ withDefaults(defineProps<{ content?: HomeSections['howWorks'] }>(), {
                 aria-hidden="true"
               >
                 <img
-                  src="/images/how-works/divider.svg"
+                  :src="assetUrl('/images/how-works/divider.svg')"
                   width="56"
                   height="2"
                   alt=""
@@ -50,7 +51,7 @@ withDefaults(defineProps<{ content?: HomeSections['howWorks'] }>(), {
               </span>
               <span class="how-works-step__detail">
                 <img
-                  src="/images/hero/dot.svg"
+                  :src="assetUrl('/images/hero/dot.svg')"
                   width="8"
                   height="8"
                   alt=""

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const assetUrl = useAssetUrl()
 import { defaultHome, type HomeSections } from '~/config/home'
 import type { Service } from '~/config/services'
 const { site } = useSiteContent()
@@ -39,7 +40,7 @@ function contactUrl(service: Pick<Service, 'title'>) {
         >
           <template #icon>
             <img
-              :src="service.icon"
+              :src="assetUrl(service.icon)"
               width="28"
               height="28"
               alt=""

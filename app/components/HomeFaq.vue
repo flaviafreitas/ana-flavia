@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const assetUrl = useAssetUrl()
 import { defaultHome, type HomeSections } from '~/config/home'
 
 const { site } = useSiteContent()
@@ -36,7 +37,7 @@ withDefaults(defineProps<{ content?: HomeSections['faq'] }>(), {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="/images/faq/dot.svg" width="8" height="8" alt="" aria-hidden="true" />
+            <img :src="assetUrl('/images/faq/dot.svg')" width="8" height="8" alt="" aria-hidden="true" />
             @{{ site.instagram }} no Instagram
             <span class="site-visually-hidden">(abre em nova aba)</span>
           </a>
@@ -54,7 +55,7 @@ withDefaults(defineProps<{ content?: HomeSections['faq'] }>(), {
           :open="true"
         >
           <template #indicator>
-            <img src="/images/faq/chevron-down.svg" width="16" height="16" alt="" />
+            <img :src="assetUrl('/images/faq/chevron-down.svg')" width="16" height="16" alt="" />
           </template>
           <p>{{ item.answer }}</p>
         </UiAccordion>

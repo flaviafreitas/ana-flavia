@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const assetUrl = useAssetUrl()
 import { defaultHome, type HomeSections } from '~/config/home'
 const { site } = useSiteContent()
 
@@ -31,12 +32,12 @@ withDefaults(
       <picture class="home-hero__circle home-hero__circle--top">
         <source
           media="(max-width: 800px)"
-          srcset="/images/hero/circle-top-mobile.svg"
+          :srcset="assetUrl('/images/hero/circle-top-mobile.svg')"
           width="200"
           height="200"
         />
         <img
-          src="/images/hero/circle-top.svg"
+          :src="assetUrl('/images/hero/circle-top.svg')"
           width="320"
           height="320"
           alt=""
@@ -45,12 +46,12 @@ withDefaults(
       <picture class="home-hero__circle home-hero__circle--bottom">
         <source
           media="(max-width: 800px)"
-          srcset="/images/hero/circle-bottom-mobile.svg"
+          :srcset="assetUrl('/images/hero/circle-bottom-mobile.svg')"
           width="160"
           height="160"
         />
         <img
-          src="/images/hero/circle-bottom.svg"
+          :src="assetUrl('/images/hero/circle-bottom.svg')"
           width="240"
           height="240"
           alt=""
@@ -70,7 +71,7 @@ withDefaults(
       </div>
       <figure class="home-hero__portrait">
         <img
-          src="/images/hero/portrait.png"
+          :src="assetUrl('/images/hero/portrait.png')"
           :alt="`${site.name} sentada em uma poltrona no consultório`"
           width="1440"
           height="1440"
@@ -108,12 +109,12 @@ withDefaults(
           <picture aria-hidden="true">
             <source
               media="(max-width: 800px)"
-              srcset="/images/hero/dot-mobile.svg"
+              :srcset="assetUrl('/images/hero/dot-mobile.svg')"
               width="6"
               height="6"
             />
             <img
-              src="/images/hero/dot.svg"
+              :src="assetUrl('/images/hero/dot.svg')"
               width="8"
               height="8"
               alt=""

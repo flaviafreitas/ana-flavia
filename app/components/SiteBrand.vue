@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const assetUrl = useAssetUrl()
 const { site } = useSiteContent()
 
 withDefaults(defineProps<{ inverted?: boolean; showRegistration?: boolean }>(), {
@@ -17,7 +18,7 @@ withDefaults(defineProps<{ inverted?: boolean; showRegistration?: boolean }>(), 
       aria-hidden="true"
     >
       <img
-        :src="inverted ? '/images/brand-mark-footer.svg' : '/images/brand-mark-header.svg'"
+        :src="assetUrl(inverted ? '/images/brand-mark-footer.svg' : '/images/brand-mark-header.svg')"
         :width="inverted ? 20 : 22"
         :height="inverted ? 20 : 22"
         alt=""
