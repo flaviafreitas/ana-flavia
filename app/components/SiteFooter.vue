@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { site } from '~/config/site'
+const { site, footer } = useSiteContent()
 
 const year = new Date().getFullYear()
 </script>
@@ -18,15 +18,15 @@ const year = new Date().getFullYear()
             :show-registration="false"
           />
           <p>
-            Psicóloga clínica sob abordagem psicanalítica. Acolhimento, respeito e sigilo absoluto.
+            {{ footer.description }}
           </p>
           <span class="site-footer__location">{{ site.location }}</span>
         </div>
         <div class="site-footer__column">
-          <h2>Contato</h2>
+          <h2>{{ footer.contactTitle }}</h2>
           <ul>
             <li>
-              <a href="tel:+5512996769665">{{ site.phone }}</a>
+              <a :href="site.phoneUrl">{{ site.phone }}</a>
             </li>
             <li>
               <a :href="`mailto:${site.email}`">{{ site.email }}</a>
@@ -34,7 +34,7 @@ const year = new Date().getFullYear()
           </ul>
         </div>
         <div class="site-footer__column">
-          <h2>Social</h2>
+          <h2>{{ footer.socialTitle }}</h2>
           <ul>
             <li>
               <a
@@ -56,20 +56,18 @@ const year = new Date().getFullYear()
                 <span class="site-visually-hidden">(abre em nova aba)</span>
               </a>
             </li>
-            <li>Online e presencial</li>
+            <li>{{ footer.availability }}</li>
           </ul>
         </div>
         <div class="site-footer__column">
-          <h2>Atendimento</h2>
+          <h2>{{ footer.servicesTitle }}</h2>
           <ul>
-            <li>Crianças</li>
-            <li>Adolescentes</li>
-            <li>Adultos</li>
+            <li v-for="(service, index) in footer.services" :key="index" > {{ service }} </li>
           </ul>
         </div>
       </div>
       <div class="site-footer__bottom">
-        <p>© {{ year }} {{ site.name }}. Todos os direitos reservados.</p>
+        <p>© {{ year }} {{ site.name }}. {{ footer.copyright }}</p>
         <p>
           {{ site.registration }}
           <span aria-hidden="true">·</span>
