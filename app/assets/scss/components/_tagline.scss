@@ -5,20 +5,6 @@
   padding-block: var(--space-7);
   background: var(--color-action);
   color: var(--color-white);
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(
-      110deg,
-      var(--color-transparent) 25%,
-      color-mix(in srgb, var(--color-white) 6%, var(--color-transparent)) 50%,
-      var(--color-transparent) 75%
-    );
-    transform: translateX(-100%);
-  }
 }
 
 .tagline__inner {
@@ -29,34 +15,21 @@
   gap: var(--space-6);
 }
 
-@keyframes tagline-shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  55%,
-  100% {
-    transform: translateX(100%);
-  }
-}
-
 @keyframes tagline-twinkle {
   0%,
   100% {
-    transform: rotate(-8deg) scale(1);
+    transform: rotate(-3deg) scale(1);
     opacity: 0.6;
   }
   50% {
-    transform: rotate(18deg) scale(1.25);
+    transform: rotate(3deg) scale(1.04);
     opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .tagline::before {
-    animation: tagline-shimmer 9s ease-in-out infinite;
-  }
   .tagline__star {
-    animation: tagline-twinkle 5s ease-in-out infinite;
+    animation: tagline-twinkle 9s ease-in-out infinite;
 
     &:last-child {
       animation-delay: -2.5s;
