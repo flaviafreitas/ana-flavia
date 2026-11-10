@@ -3,7 +3,7 @@
   isolation: isolate;
   overflow: hidden;
   padding-block: var(--space-7);
-  background: var(--color-primary-500);
+  background: var(--color-action);
   color: var(--color-white);
 
   &::before {
@@ -14,7 +14,7 @@
     background: linear-gradient(
       110deg,
       var(--color-transparent) 25%,
-      color-mix(in srgb, var(--color-white) 16%, var(--color-transparent)) 50%,
+      color-mix(in srgb, var(--color-white) 6%, var(--color-transparent)) 50%,
       var(--color-transparent) 75%
     );
     transform: translateX(-100%);
