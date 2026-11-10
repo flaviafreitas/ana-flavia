@@ -3,8 +3,9 @@ import { POSTS_QUERY } from '~~/sanity/lib/queries'
 import type { Post } from '~/types/content'
 import { normalizeSearch } from '~/utils/blog'
 
-useSeoMeta({
-  title: 'Blog | Ana Flávia',
+const { site } = useSiteContent()
+usePageSeo({
+  title: () => `Blog | ${site.value.name}`,
   description:
     'Reflexões sobre autoconhecimento, saúde mental e psicanálise. Um espaço para olhar para si com mais curiosidade e acolhimento.',
 })
@@ -64,7 +65,7 @@ async function changePage(page: number) {
       <div class="site-shell journal-hero__inner">
         <div>
           <UiBadge>Conteúdo & reflexões</UiBadge>
-          <h1 id="blog-title">Um convite para<br />olhar para dentro<span>.</span></h1>
+          <h1 id="blog-title">Um convite para <br />olhar para dentro<span>.</span></h1>
         </div>
         <p>Entre perguntas e descobertas, um espaço para pensar sobre a vida, as relações e os caminhos do cuidado com você.</p>
       </div>
