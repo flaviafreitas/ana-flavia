@@ -3,6 +3,15 @@ const { site, header } = useSiteContent()
 
 const route = useRoute()
 const menuOpen = ref(false)
+const scrolled = ref(false)
+function updateScrollState() {
+  scrolled.value = window.scrollY > 12
+}
+onMounted(() => {
+  updateScrollState()
+  window.addEventListener('scroll', updateScrollState, { passive: true })
+})
+onBeforeUnmount(() => window.removeEventListener('scroll', updateScrollState))
 const menuButton = ref<HTMLButtonElement>()
 
 watch(
@@ -28,6 +37,7 @@ function closeMenu() {
 <template>
   <header
     class="site-header"
+    :class="{ 'site-header--scrolled': scrolled }"
     @keydown.esc="closeMenu"
   >
     <a
@@ -95,24 +105,27 @@ function closeMenu() {
         </button>
       </div>
     </div>
-    <nav
-      id="site-mobile-navigation"
-      v-show="menuOpen"
-      class="site-header__mobile-nav"
-      aria-label="Navegação principal no celular"
-    >
-      <div class="site-shell">
-        <NuxtLink
-          v-for="link in header.navigation"
-          :key="link._key"
-          :to="link.to"
-          :aria-current="isCurrentLink(link.to) ? (link.to.includes('#') ? 'location' : 'page') : undefined"
-          @click="menuOpen = false"
-        >
-          {{ link.label }}
-          <span aria-hidden="true">↗</span>
-        </NuxtLink>
-      </div>
-    </nav>
+    <Transition name="header-menu">
+      <nav
+        id="site-mobile-navigation"
+        v-show="menuOpen"
+        :inert="!menuOpen"
+        class="site-header__mobile-nav"
+        aria-label="Navegação principal no celular"
+      >
+        <div class="site-shell">
+          <NuxtLink
+            v-for="link in header.navigation"
+            :key="link._key"
+            :to="link.to"
+            :aria-current="isCurrentLink(link.to) ? (link.to.includes('#') ? 'location' : 'page') : undefined"
+            @click="menuOpen = false"
+          >
+            {{ link.label }}
+            <span aria-hidden="true">↗</span>
+          </NuxtLink>
+        </div>
+      </nav>
+    </Transition>
   </header>
 </template>
