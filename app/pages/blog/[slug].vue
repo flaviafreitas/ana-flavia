@@ -15,15 +15,50 @@ const { data: related } = await useSanityFetch<Post[]>(`related:${slug}`, RELATE
   slug,
   category: post.value.category ?? '',
 })
-useSeoMeta({
+const description = computed(
+  () =>
+    post.value?.excerpt ||
+    post.value?.body
+      ?.flatMap(
+        (block) => block.children?.map((child) => ('text' in child ? child.text : '')) ?? [],
+      )
+      .join(' ')
+      .slice(0, 160) ||
+    `Uma reflexão sobre ${post.value?.category || 'saúde mental'} por ${site.value.name}.`,
+)
+usePageSeo({
   title: () => `${post.value?.title} | ${site.value.name}`,
-  description: () => post.value?.excerpt,
-  ogTitle: () => post.value?.title,
-  ogDescription: () => post.value?.excerpt,
-  ogImage: () => post.value?.coverImage?.url,
-  ogType: 'article',
-  twitterCard: 'summary_large_image',
+  description,
+  image: () => post.value?.coverImage?.url,
+  imageAlt: () => post.value?.coverImage?.alt,
+  type: 'article',
 })
+useSeoMeta({
+  author: () => site.value.name,
+  articlePublishedTime: () => post.value?.publishedAt,
+  articleSection: () => post.value?.category,
+})
+useHead(() => ({
+  script: [
+    {
+      key: 'article-structured-data',
+      type: 'application/ld+json',
+      textContent: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: post.value?.title,
+        description: description.value,
+        image: post.value?.coverImage?.url,
+        datePublished: post.value?.publishedAt,
+        dateModified: post.value?.updatedAt,
+        inLanguage: 'pt-BR',
+        author: { '@type': 'Person', name: site.value.name },
+        publisher: { '@type': 'Person', name: site.value.name },
+      }).replace(/</g, '\\u003c'),
+    },
+  ],
+}))
+
 const shareMessage = ref('')
 const manualShareUrl = ref('')
 const shareInput = useTemplateRef<HTMLInputElement>('shareInput')
