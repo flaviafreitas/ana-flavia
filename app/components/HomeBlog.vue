@@ -48,14 +48,7 @@ const fallbackImages = [
               </span>
             </div>
             <h3> <NuxtLink :to="`/blog/${post.slug}`">{{ post.title }}</NuxtLink> </h3>
-            <NuxtLink
-              :to="`/blog/${post.slug}`"
-              class="blog-card__link"
-              :aria-label="`Ler artigo: ${post.title}`"
-            >
-              {{ content.articleButton }}
-              <img src="/images/blog/chevron-right.svg" width="14" height="14" alt="" aria-hidden="true" />
-            </NuxtLink>
+            <BlogArticleLink :slug="post.slug" :title="post.title" :label="content.articleButton" />
           </div>
         </article>
       </div>
