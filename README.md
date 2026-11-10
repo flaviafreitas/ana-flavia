@@ -29,6 +29,27 @@ O Nuxt lê `.env.local` nos comandos de desenvolvimento, build e preview.
 Em produção, configure `NUXT_PUBLIC_SANITY_PROJECT_ID`,
 `NUXT_PUBLIC_SANITY_DATASET` e `NUXT_PUBLIC_SANITY_API_VERSION` no ambiente.
 
+## Textos da página inicial
+
+Acesse `/studio` → **Página inicial**. As abas separam Apresentação, Sobre,
+Serviços, Como funciona, Depoimentos, Blog, Perguntas frequentes e Chamada final.
+É possível editar títulos, descrições, botões, indicadores e listas de cada seção;
+as listas permitem adicionar, remover e reordenar itens. Os artigos são gerenciados
+em **Publicações**.
+
+Novas páginas iniciais começam com os textos atuais do site. Campos novos ainda
+não preenchidos usam esses mesmos textos como padrão. Alterações salvas no painel
+ficam em rascunho: clique em **Publish** e atualize a página do site para vê-las.
+Os depoimentos iniciais são fictícios e estão identificados como demonstração.
+
+## Cabeçalho, rodapé e contato
+
+Em `/studio`, abra **Cabeçalho, rodapé e contato**. As abas permitem alterar
+nome, título profissional, CRP, localização e contatos; links e botões do menu;
+textos, títulos das colunas e públicos atendidos no rodapé. As configurações
+valem para todas as páginas. WhatsApp e Instagram também são compartilhados
+pelos botões das seções da página inicial. Clique em **Publish** após editar.
+
 ## Validação e produção
 
 ```bash
