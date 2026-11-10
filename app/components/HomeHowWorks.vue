@@ -1,27 +1,10 @@
 <script setup lang="ts">
-import { site } from '~/config/site'
+import { defaultHome, type HomeSections } from '~/config/home'
+const { site } = useSiteContent()
 
-const steps = [
-  {
-    title: 'Primeiro Contato',
-    description:
-      'Você entra em contato pelo WhatsApp, tiramos dúvidas sobre horários e valores, e agendamos um horário inicial.',
-    detail: 'WhatsApp',
-  },
-  {
-    title: 'Entrevista Inicial',
-    description:
-      'Uma primeira conversa livre para você compartilhar o que te traz aqui, entender suas expectativas e alinhar o método.',
-    detail: 'Sessão de 50min',
-    accent: true,
-  },
-  {
-    title: 'Sessões Regulares',
-    description:
-      'Sessões semanais focadas na fala livre. Sem roteiro fixo: você traz o que vier à mente, e trabalhamos juntos na escuta de si.',
-    detail: 'Semanalmente',
-  },
-]
+withDefaults(defineProps<{ content?: HomeSections['howWorks'] }>(), {
+  content: () => defaultHome.howWorks,
+})
 </script>
 
 <template>
@@ -33,19 +16,19 @@ const steps = [
     <div class="site-shell home-how-works__inner">
       <UiSectionHeading
         class="home-how-works__heading"
-        eyebrow="O Caminho"
+        :eyebrow="content.eyebrow"
         eyebrow-tone="brand"
-        title="Como funciona a psicoterapia?"
+        :title="content.title"
         title-id="how-works-title"
-        description="Um processo simples e acolhedor para dar o primeiro passo em direção ao seu bem-estar."
+        :description="content.description"
       />
       <ol
         class="home-how-works__steps"
         role="list"
       >
         <li
-          v-for="(step, index) in steps"
-          :key="step.title"
+          v-for="(step, index) in content.steps"
+          :key="step._key"
         >
           <UiCard
             :class="['how-works-step', { 'how-works-step--accent': step.accent }]"
@@ -85,7 +68,7 @@ const steps = [
         target="_blank"
         rel="noopener noreferrer"
       >
-        Quero começar agora
+        {{ content.button }}
         <span class="site-visually-hidden">pelo WhatsApp (abre em nova aba)</span>
       </UiButton>
     </div>
