@@ -88,26 +88,22 @@
 @media (prefers-reduced-motion: no-preference) {
   .service-card {
     transition:
-      transform calc(var(--duration-fast) * 1.5) ease,
-      border-color calc(var(--duration-fast) * 1.5) ease,
-      box-shadow calc(var(--duration-fast) * 1.5) ease;
+      transform var(--duration-medium) var(--ease-soft),
+      border-color var(--duration-medium) var(--ease-soft),
+      box-shadow var(--duration-medium) var(--ease-soft);
 
     .card__icon {
-      transition: transform calc(var(--duration-fast) * 1.5) ease;
-    }
-
-    &:focus-within {
-      transform: translateY(-6px);
+      transition: transform var(--duration-medium) var(--ease-soft);
     }
   }
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .service-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-2px);
 
     .card__icon {
-      transform: rotate(-6deg) scale(1.05);
+      transform: scale(1.025);
     }
   }
 }
