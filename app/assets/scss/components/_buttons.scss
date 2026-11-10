@@ -95,14 +95,6 @@
     background: var(--color-action-hover);
   }
 }
-.btn--brand {
-  background: var(--color-primary-500);
-  color: var(--color-navy-900);
-  box-shadow: var(--shadow-button);
-  &:hover:not(:disabled, [aria-disabled='true']) {
-    background: var(--color-blue-100);
-  }
-}
 .btn--secondary {
   background: var(--color-transparent);
   border-color: var(--color-action);
