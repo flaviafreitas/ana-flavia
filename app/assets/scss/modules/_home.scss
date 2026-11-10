@@ -90,20 +90,20 @@
 @keyframes hero-ring-breathe {
   0%,
   100% {
-    transform: scale(0.985);
+    transform: scale(0.995);
   }
   50% {
-    transform: scale(1.025);
+    transform: scale(1.012);
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .home-hero__portrait::before {
-    animation: hero-ring-breathe 6s ease-in-out infinite;
+    animation: hero-ring-breathe 10s ease-in-out infinite;
   }
 
   .home-hero__portrait::after {
-    animation: hero-ring-breathe 8s ease-in-out -4s infinite reverse;
+    animation: hero-ring-breathe 12s ease-in-out -4s infinite reverse;
   }
 }
 
