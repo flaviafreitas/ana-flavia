@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { defaultHome, type HomeSections } from '~/config/home'
-import type { Swiper as SwiperInstance } from 'swiper'
-import { A11y, Autoplay, EffectFade, Keyboard, Pagination } from 'swiper/modules'
+import { A11y, EffectFade, Keyboard, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
 import 'swiper/css'
@@ -9,31 +8,11 @@ import 'swiper/css/a11y'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
 
-const props = withDefaults(defineProps<{ content?: HomeSections['testimonials'] }>(), {
+withDefaults(defineProps<{ content?: HomeSections['testimonials'] }>(), {
   content: () => defaultHome.testimonials,
 })
 
 const reducedMotion = ref(false)
-const slider = shallowRef<SwiperInstance>()
-const hasFocus = ref(false)
-
-watchEffect(() => {
-  const instance = slider.value
-  if (!instance || instance.destroyed) return
-
-  if (reducedMotion.value || hasFocus.value || props.content.items.length < 2) {
-    instance.autoplay.stop()
-  } else if (!instance.autoplay.running) {
-    instance.autoplay.start()
-  }
-})
-
-function handleFocusOut(event: FocusEvent) {
-  if (!(event.currentTarget as HTMLElement).contains(event.relatedTarget as Node | null)) {
-    hasFocus.value = false
-  }
-}
-
 onMounted(() => {
   const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
   const updatePreference = () => {
@@ -61,19 +40,17 @@ onMounted(() => {
         title-id="testimonials-title"
       />
       <Swiper
+        id="testimonials-carousel"
         class="home-testimonials__slider"
-        :modules="[A11y, Autoplay, EffectFade, Keyboard, Pagination]"
+        :modules="[A11y, EffectFade, Keyboard, Pagination]"
         effect="fade"
         :fade-effect="{ crossFade: true }"
         :slides-per-view="1"
         :space-between="32"
         :speed="reducedMotion ? 0 : 600"
-        :autoplay="{ delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: true }"
+        :grab-cursor="true"
         :keyboard="{ enabled: true, onlyInViewport: true }"
         :pagination="{ clickable: true, bulletElement: 'button' }"
-        @swiper="slider = $event"
-        @focusin="hasFocus = true"
-        @focusout="handleFocusOut"
         :a11y="{
           containerRoleDescriptionMessage: 'Carrossel de depoimentos',
           itemRoleDescriptionMessage: 'Depoimento',
