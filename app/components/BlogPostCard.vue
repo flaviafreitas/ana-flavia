@@ -17,9 +17,7 @@ withDefaults(defineProps<{ post: Post; featured?: boolean }>(), { featured: fals
         <NuxtLink :to="`/blog/${post.slug}`">{{ post.title }}</NuxtLink>
       </component>
       <p v-if="post.excerpt" class="journal-card__excerpt">{{ post.excerpt }}</p>
-      <NuxtLink :to="`/blog/${post.slug}`" class="journal-card__link" :aria-label="`Ler artigo: ${post.title}`">
-        Ler artigo <span aria-hidden="true">↗</span>
-      </NuxtLink>
+      <BlogArticleLink :slug="post.slug" :title="post.title" />
     </div>
   </article>
 </template>
