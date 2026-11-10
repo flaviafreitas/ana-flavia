@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { site } from '~/config/site'
+const { site } = useSiteContent()
 
 withDefaults(defineProps<{ inverted?: boolean; showRegistration?: boolean }>(), {
   inverted: false,
@@ -29,7 +29,7 @@ withDefaults(defineProps<{ inverted?: boolean; showRegistration?: boolean }>(), 
         v-if="showRegistration"
         class="site-brand__registration"
       >
-        Psicóloga Clínica
+        {{ site.profession }}
         <span aria-hidden="true">·</span>
         {{ site.registration }}
       </span>
