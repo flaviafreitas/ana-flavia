@@ -66,12 +66,10 @@
   height: 44px;
   min-height: 44px;
   padding: 0;
-  background: var(--color-blue-100);
-  color: var(--color-text);
   font-size: var(--text-body-lg);
 
-  &.btn--brand {
-    background: var(--color-primary-500);
+  &.btn--ghost {
+    background: var(--color-surface-soft);
   }
 }
 
