@@ -26,27 +26,10 @@
   transition:
     background var(--duration-fast),
     border-color var(--duration-fast),
-    box-shadow var(--duration-fast);
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background: linear-gradient(
-      110deg,
-      var(--color-transparent) 25%,
-      color-mix(in srgb, var(--color-white) 6%, var(--color-transparent)) 50%,
-      var(--color-transparent) 75%
-    );
-    transform: translateX(-120%);
-  }
+    box-shadow var(--duration-medium) var(--ease-soft);
   &:focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 4px;
-  }
-  &:active:not(:disabled, [aria-disabled='true']) {
-    transform: translateY(1px);
   }
   &:disabled,
   &[aria-disabled='true'] {
@@ -64,23 +47,15 @@
       background var(--duration-fast),
       border-color var(--duration-fast),
       color var(--duration-fast),
-      box-shadow calc(var(--duration-fast) * 1.5) ease,
-      transform calc(var(--duration-fast) * 1.5) ease;
-
-    &::after {
-      transition: transform calc(var(--duration-fast) * 3.5) ease;
-    }
+      box-shadow var(--duration-medium) var(--ease-soft),
+      transform var(--duration-medium) var(--ease-soft);
   }
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .btn:hover:not(:disabled, [aria-disabled='true']) {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: var(--shadow-swatch);
-
-    &::after {
-      transform: translateX(120%);
-    }
   }
 
   .btn:active:not(:disabled, [aria-disabled='true']) {
