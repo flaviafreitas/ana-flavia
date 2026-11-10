@@ -1,15 +1,16 @@
 <script setup lang="ts">
+import { defaultHome, type HomeSections } from '~/config/home'
 import type { Swiper as SwiperInstance } from 'swiper'
 import { A11y, Autoplay, EffectFade, Keyboard, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { defaultTestimonials, type Testimonial } from '~/config/testimonials'
+
 import 'swiper/css'
 import 'swiper/css/a11y'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
 
-const props = withDefaults(defineProps<{ testimonials?: Testimonial[] }>(), {
-  testimonials: () => defaultTestimonials,
+const props = withDefaults(defineProps<{ content?: HomeSections['testimonials'] }>(), {
+  content: () => defaultHome.testimonials,
 })
 
 const reducedMotion = ref(false)
@@ -20,7 +21,7 @@ watchEffect(() => {
   const instance = slider.value
   if (!instance || instance.destroyed) return
 
-  if (reducedMotion.value || hasFocus.value || props.testimonials.length < 2) {
+  if (reducedMotion.value || hasFocus.value || props.content.items.length < 2) {
     instance.autoplay.stop()
   } else if (!instance.autoplay.running) {
     instance.autoplay.start()
@@ -35,7 +36,9 @@ function handleFocusOut(event: FocusEvent) {
 
 onMounted(() => {
   const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
-  const updatePreference = () => { reducedMotion.value = preference.matches }
+  const updatePreference = () => {
+    reducedMotion.value = preference.matches
+  }
   updatePreference()
   preference.addEventListener('change', updatePreference)
   onBeforeUnmount(() => preference.removeEventListener('change', updatePreference))
@@ -44,7 +47,7 @@ onMounted(() => {
 
 <template>
   <section
-    v-if="testimonials.length"
+    v-if="content.items.length"
     id="depoimentos"
     class="home-testimonials"
     aria-labelledby="testimonials-title"
@@ -52,9 +55,9 @@ onMounted(() => {
     <div class="site-shell home-testimonials__inner">
       <UiSectionHeading
         class="home-testimonials__heading"
-        eyebrow="Relatos de Quem Já Foi"
+        :eyebrow="content.eyebrow"
         eyebrow-tone="brand"
-        title="O que dizem sobre a terapia"
+        :title="content.title"
         title-id="testimonials-title"
       />
       <Swiper
@@ -79,11 +82,11 @@ onMounted(() => {
         }"
       >
         <SwiperSlide
-          v-for="testimonial in testimonials"
-          :key="testimonial.id"
+          v-for="testimonial in content.items"
+          :key="testimonial._key"
         >
           <figure class="card card--white testimonial-card">
-            <div class="testimonial-card__quotes" aria-hidden="true">
+            <div class="testimonial-card__quotes" aria-hidden="true" >
               <span>“</span>
               <span>”</span>
             </div>
