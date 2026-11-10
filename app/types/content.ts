@@ -14,6 +14,7 @@ export interface Post {
   slug: string
   excerpt?: string
   publishedAt?: string
+  updatedAt?: string
   category?: string
   readingTime?: number
   coverImage?: {
