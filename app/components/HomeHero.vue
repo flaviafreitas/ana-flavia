@@ -1,12 +1,22 @@
 <script setup lang="ts">
-import { site } from '~/config/site'
+import { defaultHome, type HomeSections } from '~/config/home'
+const { site } = useSiteContent()
 
-withDefaults(defineProps<{ eyebrow?: string; title?: string; introduction?: string }>(), {
-  eyebrow: 'Abordagem Psicanalítica',
-  title: 'Um espaço seguro para desatar os nós da sua mente.',
-  introduction:
-    'Através de uma escuta sensível e sem julgamentos, convido você a explorar sua singularidade, compreender seus sintomas e construir novos caminhos.',
-})
+withDefaults(
+  defineProps<{
+    content?: HomeSections['hero']
+    eyebrow?: string
+    title?: string
+    introduction?: string
+  }>(),
+  {
+    content: () => defaultHome.hero,
+    eyebrow: 'Abordagem Psicanalítica',
+    title: 'Um espaço seguro para desatar os nós da sua mente.',
+    introduction:
+      'Através de uma escuta sensível e sem julgamentos, convido você a explorar sua singularidade, compreender seus sintomas e construir novos caminhos.',
+  },
+)
 </script>
 
 <template>
@@ -75,24 +85,24 @@ withDefaults(defineProps<{ eyebrow?: string; title?: string; introduction?: stri
             target="_blank"
             rel="noopener noreferrer"
           >
-            Agendar pelo WhatsApp
+            {{ content.primaryButton }}
             <span class="site-visually-hidden">(abre em nova aba)</span>
           </UiButton>
           <UiButton
             to="/#sobre"
             variant="secondary"
           >
-            Conheça meu trabalho
+            {{ content.secondaryButton }}
           </UiButton>
         </div>
-        <p class="home-hero__availability">Atendimento online (todo o Brasil) e presencial</p>
+        <p class="home-hero__availability">{{ content.availability }}</p>
       </div>
       <ul
         class="home-hero__credentials"
         aria-label="Sobre o atendimento"
       >
         <li
-          v-for="label in ['Psicanálise Clínica', '+5 anos de experiência']"
+          v-for="label in content.credentials"
           :key="label"
         >
           <picture aria-hidden="true">
