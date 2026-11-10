@@ -12,6 +12,12 @@ watch(
   },
 )
 
+function isCurrentLink(to: string) {
+  return (
+    route.fullPath === to || (!to.includes('#') && to !== '/' && route.path.startsWith(`${to}/`))
+  )
+}
+
 function closeMenu() {
   if (!menuOpen.value) return
   menuOpen.value = false
@@ -40,8 +46,8 @@ function closeMenu() {
           v-for="link in header.navigation"
           :key="link._key"
           :to="link.to"
-          :class="{ 'is-current': route.fullPath === link.to }"
-          :aria-current="route.fullPath === link.to ? 'location' : 'false'"
+          :class="{ 'is-current': isCurrentLink(link.to) }"
+          :aria-current="isCurrentLink(link.to) ? (link.to.includes('#') ? 'location' : 'page') : undefined"
         >
           {{ link.label }}
         </NuxtLink>
@@ -100,6 +106,7 @@ function closeMenu() {
           v-for="link in header.navigation"
           :key="link._key"
           :to="link.to"
+          :aria-current="isCurrentLink(link.to) ? (link.to.includes('#') ? 'location' : 'page') : undefined"
           @click="menuOpen = false"
         >
           {{ link.label }}
