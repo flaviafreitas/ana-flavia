@@ -1,6 +1,9 @@
-import type {PortableTextBlock} from '@portabletext/types'
+import type { PortableTextBlock } from '@portabletext/types'
 
-export interface HomeData {
+import type { HomeSections } from '~/config/home'
+
+export type HomeData = { [K in keyof HomeSections]?: Partial<HomeSections[K]> } & {
+  tagline?: string
   eyebrow?: string
   title?: string
   introduction?: string
