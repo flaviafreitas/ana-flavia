@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { defaultServices, type Service } from '~/config/services'
-import { site } from '~/config/site'
+import { defaultHome, type HomeSections } from '~/config/home'
+import type { Service } from '~/config/services'
+const { site } = useSiteContent()
 
-withDefaults(defineProps<{ services?: Service[] }>(), {
-  services: () => defaultServices,
+withDefaults(defineProps<{ content?: HomeSections['services'] }>(), {
+  content: () => defaultHome.services,
 })
 
-function contactUrl(service: Service) {
-  return `${site.whatsappUrl}?text=${encodeURIComponent(`Olá! Gostaria de saber mais sobre o atendimento para ${service.title.toLocaleLowerCase('pt-BR')}.`)}`
+function contactUrl(service: Pick<Service, 'title'>) {
+  return `${site.value.whatsappUrl}?text=${encodeURIComponent(`Olá! Gostaria de saber mais sobre o atendimento para ${service.title.toLocaleLowerCase('pt-BR')}.`)}`
 }
 </script>
 
 <template>
   <section
-    v-if="services.length"
+    v-if="content.items.length"
     id="servicos"
     class="home-services"
     aria-labelledby="services-title"
@@ -21,16 +22,16 @@ function contactUrl(service: Service) {
     <div class="site-shell home-services__inner">
       <UiSectionHeading
         class="home-services__heading"
-        eyebrow="Frentes de Cuidado"
+        :eyebrow="content.eyebrow"
         eyebrow-tone="brand"
-        title="Serviços e Especialidades"
+        :title="content.title"
         title-id="services-title"
-        description="Escuta e acolhimento em diferentes fases da vida, respeitando a singularidade, a história e o tempo de cada pessoa."
+        :description="content.description"
       />
       <div class="home-services__grid">
         <UiCard
-          v-for="service in services"
-          :key="service.id"
+          v-for="service in content.items"
+          :key="service._key"
           class="service-card"
           :title="service.title"
           :description="service.description"
