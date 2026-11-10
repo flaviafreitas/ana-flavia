@@ -166,12 +166,11 @@ export default defineComponent({
         sample: 'CUIDADO EM CADA DETALHE',
       },
     ]
-    const variants = ['primary', 'secondary', 'ghost', 'brand'] as const
+    const variants = ['primary', 'secondary', 'ghost'] as const
     const variantNames = {
       primary: 'Primário',
       secondary: 'Secundário',
       ghost: 'Texto',
-      brand: 'Marca',
     }
     const selectedVariant = ref<(typeof variants)[number]>('primary')
     const selectedSize = ref<'sm' | 'md' | 'lg'>('md')
