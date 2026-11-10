@@ -7,7 +7,7 @@ withDefaults(
     titleId?: string
     description?: string
   }>(),
-  { eyebrowTone: 'soft' },
+  { eyebrowTone: 'brand' },
 )
 </script>
 
