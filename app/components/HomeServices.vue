@@ -49,7 +49,7 @@ function contactUrl(service: Pick<Service, 'title'>) {
           <template #footer>
             <UiButton
               class="service-card__action"
-              :variant="service.featured ? 'brand' : 'ghost'"
+              :variant="service.featured ? 'primary' : 'ghost'"
               size="sm"
               :href="contactUrl(service)"
               target="_blank"
