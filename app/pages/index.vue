@@ -12,6 +12,13 @@ const { data: posts, error: postsError } = await useSanityFetch<Post[]>(
   HOME_POSTS_QUERY,
 )
 const sections = computed(() => resolveHomeSections(home.value))
+const { site } = useSiteContent()
+usePageSeo({
+  title: () => `${site.value.name} | ${site.value.profession}`,
+  description: () =>
+    home.value?.introduction ||
+    'Psicoterapia com escuta psicanalítica, acolhimento e sigilo. Atendimento online em todo o Brasil e presencial com Ana Flávia.',
+})
 </script>
 
 <template>
