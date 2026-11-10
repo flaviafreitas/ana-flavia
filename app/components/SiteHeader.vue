@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { site, siteNavigation } from '~/config/site'
+const { site, header } = useSiteContent()
 
 const route = useRoute()
 const menuOpen = ref(false)
@@ -37,8 +37,8 @@ function closeMenu() {
         aria-label="Navegação principal"
       >
         <NuxtLink
-          v-for="link in siteNavigation"
-          :key="link.to"
+          v-for="link in header.navigation"
+          :key="link._key"
           :to="link.to"
           :class="{ 'is-current': route.fullPath === link.to }"
           :aria-current="route.fullPath === link.to ? 'location' : 'false'"
@@ -54,8 +54,8 @@ function closeMenu() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span class="site-header__appointment-desktop">Agendar consulta</span>
-          <span class="site-header__appointment-mobile">Agendar</span>
+          <span class="site-header__appointment-desktop">{{ header.appointmentLabel }}</span>
+          <span class="site-header__appointment-mobile">{{ header.mobileAppointmentLabel }}</span>
           <span class="site-visually-hidden">pelo WhatsApp (abre em nova aba)</span>
         </UiButton>
         <button
@@ -97,8 +97,8 @@ function closeMenu() {
     >
       <div class="site-shell">
         <NuxtLink
-          v-for="link in siteNavigation"
-          :key="link.to"
+          v-for="link in header.navigation"
+          :key="link._key"
           :to="link.to"
           @click="menuOpen = false"
         >
