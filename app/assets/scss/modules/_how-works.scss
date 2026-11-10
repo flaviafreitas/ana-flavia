@@ -68,22 +68,22 @@
 @media (prefers-reduced-motion: no-preference) {
   .how-works-step {
     transition:
-      transform calc(var(--duration-fast) * 1.5) ease,
-      border-color calc(var(--duration-fast) * 1.5) ease,
-      box-shadow calc(var(--duration-fast) * 1.5) ease;
+      transform var(--duration-medium) var(--ease-soft),
+      border-color var(--duration-medium) var(--ease-soft),
+      box-shadow var(--duration-medium) var(--ease-soft);
 
     .card__icon {
-      transition: transform calc(var(--duration-fast) * 1.5) ease;
+      transition: transform var(--duration-medium) var(--ease-soft);
     }
   }
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .how-works-step:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
 
     .card__icon {
-      transform: scale(1.06);
+      transform: scale(1.025);
     }
   }
 }
