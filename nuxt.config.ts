@@ -12,9 +12,13 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'pt-BR' },
-      title: 'Ana Flavia',
-      meta: [{ name: 'description', content: 'Site institucional de Ana Flavia' }],
+      title: 'Ana Flávia | Psicóloga Clínica',
+      meta: [{ name: 'description', content: 'Psicoterapia com escuta psicanalítica, acolhimento e sigilo. Atendimento online em todo o Brasil e presencial com Ana Flávia.' }],
     },
   },
-  routeRules: { '/studio': { ssr: false }, '/studio/**': { ssr: false } },
+  routeRules: {
+    '/studio': { ssr: false, headers: { 'X-Robots-Tag': 'noindex, nofollow' } },
+    '/studio/**': { ssr: false, headers: { 'X-Robots-Tag': 'noindex, nofollow' } },
+    '/style-guide': { headers: { 'X-Robots-Tag': 'noindex, nofollow' } },
+  },
 })
