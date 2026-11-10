@@ -1,15 +1,19 @@
 <script setup lang="ts">
+import { defaultHome, type HomeSections } from '~/config/home'
 import { PortableText } from '@portabletext/vue'
 import type { PortableTextBlock } from '@portabletext/types'
-import { site } from '~/config/site'
+const { site } = useSiteContent()
 
-defineProps<{ body?: PortableTextBlock[] }>()
+const props = withDefaults(
+  defineProps<{ content?: HomeSections['about']; body?: PortableTextBlock[] }>(),
+  { content: () => defaultHome.about },
+)
 
-const stats = [
-  { label: 'Anos de Atuação', value: 5 },
-  { label: 'Pacientes Atendidos', value: 200 },
-]
-const counts = ref(stats.map((stat) => stat.value))
+const stats = computed(() => props.content.stats)
+const counts = ref(stats.value.map((stat) => stat.value))
+watch(stats, () => {
+  finishCounting()
+})
 const statsElement = useTemplateRef<HTMLDListElement>('statsElement')
 let observer: IntersectionObserver | undefined
 let motionPreference: MediaQueryList | undefined
@@ -18,7 +22,7 @@ let animationFrame = 0
 function finishCounting() {
   cancelAnimationFrame(animationFrame)
   observer?.disconnect()
-  counts.value = stats.map((stat) => stat.value)
+  counts.value = stats.value.map((stat) => stat.value)
 }
 
 function handleMotionChange() {
@@ -29,7 +33,7 @@ onMounted(() => {
   motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)')
   if (motionPreference.matches || !statsElement.value || !('IntersectionObserver' in window)) return
 
-  counts.value = stats.map(() => 0)
+  counts.value = stats.value.map(() => 0)
   motionPreference.addEventListener('change', handleMotionChange)
   observer = new IntersectionObserver(
     (entries) => {
@@ -40,7 +44,7 @@ onMounted(() => {
       function tick(now: number) {
         const progress = Math.min((now - start) / 3000, 1)
         const eased = 1 - (1 - progress) ** 3
-        counts.value = stats.map((stat) => Math.floor(stat.value * eased))
+        counts.value = stats.value.map((stat) => Math.floor(stat.value * eased))
         if (progress < 1) animationFrame = requestAnimationFrame(tick)
       }
 
@@ -67,9 +71,9 @@ onBeforeUnmount(() => {
     <div class="site-shell home-about__inner">
       <UiSectionHeading
         class="home-about__heading"
-        eyebrow="Olá, eu sou a Ana"
+        :eyebrow="content.eyebrow"
         eyebrow-tone="brand"
-        title="A terapia não precisa ser fria, formal ou distante."
+        :title="content.title"
         title-id="about-title"
       />
       <figure class="home-about__portrait">
@@ -84,7 +88,7 @@ onBeforeUnmount(() => {
       </figure>
       <div class="home-about__body">
         <PortableText
-          v-if="body?.length"
+          v-if="body"
           :value="body"
         />
         <template v-else>
@@ -107,7 +111,7 @@ onBeforeUnmount(() => {
       >
         <div
           v-for="(stat, index) in stats"
-          :key="stat.label"
+          :key="stat._key"
         >
           <dt>{{ stat.label }}</dt>
           <dd>
