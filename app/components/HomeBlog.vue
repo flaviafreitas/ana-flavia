@@ -31,7 +31,7 @@ const fallbackImages = [
           :key="post.slug"
           class="card card--white blog-card"
         >
-          <NuxtLink :to="`/blog/${post.slug}`" class="blog-card__cover" tabindex="-1" aria-hidden="true" >
+          <NuxtLink :to="`/blog/${post.slug}`" class="blog-card__cover" :aria-label="`Ler artigo: ${post.title}`" >
             <img
               :src="post.coverImage?.url || fallbackImages[index]"
               :alt="post.coverImage?.alt || ''"
