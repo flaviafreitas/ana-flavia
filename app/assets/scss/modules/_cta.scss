@@ -22,14 +22,6 @@
   max-width: 760px;
   text-align: center;
 
-  .badge {
-    border: 0;
-    color: var(--color-white);
-    line-height: normal;
-    letter-spacing: 0;
-    opacity: 0.8;
-  }
-
   h2 {
     font-size: var(--text-h1);
     line-height: 1.15;
@@ -50,27 +42,6 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-4);
-
-  .btn {
-    font-size: 1.0625rem;
-    line-height: normal;
-  }
-}
-
-.home-cta__whatsapp {
-  padding: 18px var(--space-10);
-  border: 0;
-  background: var(--color-primary-500);
-  color: var(--color-white);
-  box-shadow: none;
-}
-
-.home-cta__instagram {
-  padding: var(--space-4) var(--space-8);
-  border-width: 1.5px;
-  border-color: var(--color-navy-900);
-  color: var(--color-navy-900);
-  font-weight: 600;
 }
 
 .home-cta__reassurance {
