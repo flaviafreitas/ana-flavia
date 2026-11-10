@@ -1,23 +1,24 @@
 <script setup lang="ts">
-import { defaultFaq, type FaqItem } from '~/config/faq'
-import { site } from '~/config/site'
+import { defaultHome, type HomeSections } from '~/config/home'
 
-withDefaults(defineProps<{ items?: FaqItem[] }>(), {
-  items: () => defaultFaq,
+const { site } = useSiteContent()
+
+withDefaults(defineProps<{ content?: HomeSections['faq'] }>(), {
+  content: () => defaultHome.faq,
 })
 </script>
 
 <template>
-  <section v-if="items.length" id="faq" class="home-faq" aria-labelledby="faq-title">
+  <section v-if="content.items.length" id="faq" class="home-faq" aria-labelledby="faq-title" >
     <div class="site-shell home-faq__inner">
       <div class="home-faq__intro">
         <UiSectionHeading
           class="home-faq__heading"
-          eyebrow="Dúvidas Comuns"
+          :eyebrow="content.eyebrow"
           eyebrow-tone="brand"
-          title="Ficou com alguma dúvida sobre o atendimento?"
+          :title="content.title"
           title-id="faq-title"
-          description="Se a sua dúvida não estiver respondida aqui, sinta-se à vontade para me mandar uma mensagem direta no WhatsApp ou Instagram!"
+          :description="content.description"
         />
         <div class="home-faq__contacts">
           <UiButton
@@ -26,7 +27,7 @@ withDefaults(defineProps<{ items?: FaqItem[] }>(), {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Falar no WhatsApp
+            {{ content.button }}
             <span class="site-visually-hidden">(abre em nova aba)</span>
           </UiButton>
           <a
@@ -41,14 +42,14 @@ withDefaults(defineProps<{ items?: FaqItem[] }>(), {
           </a>
         </div>
         <div class="home-faq__availability">
-          <strong>Atendimentos</strong>
-          <span>Online (Brasil todo) + Presencial</span>
+          <strong>{{ content.availabilityTitle }}</strong>
+          <span>{{ content.availability }}</span>
         </div>
       </div>
       <div class="home-faq__list">
         <UiAccordion
-          v-for="item in items"
-          :key="item.question"
+          v-for="item in content.items"
+          :key="item._key"
           :question="item.question"
           :open="true"
         >
