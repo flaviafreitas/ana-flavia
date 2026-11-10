@@ -8,6 +8,27 @@
   font-family: var(--font-body);
 }
 
+.site-header--scrolled {
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--color-navy-900) 6%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-header {
+    transition: box-shadow var(--duration-medium) var(--ease-soft);
+  }
+  .header-menu-enter-active,
+  .header-menu-leave-active {
+    transition:
+      opacity 200ms ease,
+      translate 200ms var(--ease-soft);
+  }
+  .header-menu-enter-from,
+  .header-menu-leave-to {
+    opacity: 0;
+    translate: 0 -6px;
+  }
+}
+
 .site-header__inner {
   display: flex;
   min-height: 90px;
